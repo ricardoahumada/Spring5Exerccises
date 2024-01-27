@@ -24,7 +24,7 @@ public class Backlog {
     private int version;
 
     @ManyToOne
-    @JoinColumn(name = "itemId")
+    @JoinColumn(name = "tuneId")
     private Song item;
 
     public Backlog(String location, int quantity) {

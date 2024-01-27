@@ -4,6 +4,7 @@ import com.bananaapps.bananamusic.persistence.music.SongRepository;
 import com.bananaapps.bananamusic.persistence.music.JpaSongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
@@ -17,62 +18,62 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-//@Configuration
-@PropertySource("classpath:jdbc.properties")
+@Configuration
+//@PropertySource("classpath:jdbc.properties")
 public class SpringRepositoryConfig {
 
-	@Autowired
-	private Environment env;
+	/*@Autowired
+    private Environment env;
 
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(bananaEmf().getObject());
+        return transactionManager;
+    }
+
+    @Bean
+    DataSource bananaDataSource() {
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName(env.getProperty("banana.driverClassName"));
+        ds.setUrl(env.getProperty("banana.url"));
+        ds.setUsername(env.getProperty("banana.dbUserName"));
+        ds.setPassword(env.getProperty("banana.password"));
+        return ds;
+    }
+
+    @Bean
+    public JpaVendorAdapter vendorAdapter() {
+        HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
+        va.setShowSql(true);
+        va.setGenerateDdl(false);
+        return va;
+    }
+
+    @Bean(name = "entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean bananaEmf() {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(bananaDataSource());
+        em.setPersistenceUnitName(env.getProperty("banana.persistenceUnitName"));
+        em.setPackagesToScan("com.banana.*");
+        em.setJpaVendorAdapter(vendorAdapter());
+        em.setJpaProperties(additionalProperties());
+        return em;
+    }
+
+    private Properties additionalProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.dialect", env.getProperty("banana.dialect"));
+        return properties;
+    }
+*/
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
-
-	@Bean
-	public PlatformTransactionManager transactionManager() {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(javatunesEmf().getObject());
-		return transactionManager;
-	}
-
-	@Bean
-	DataSource javatunesDataSource() {
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName(env.getProperty("javatunes.driverClassName"));
-		ds.setUrl(env.getProperty("javatunes.url"));
-		ds.setUsername(env.getProperty("javatunes.dbUserName"));
-		ds.setPassword(env.getProperty("javatunes.password"));
-		return ds;
-	}
-
-	@Bean
-	public JpaVendorAdapter vendorAdapter() {
-		HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-		va.setShowSql(true);
-		va.setGenerateDdl(false);
-		return va;
-	}
-
-	@Bean(name = "entityManagerFactory")
-	public LocalContainerEntityManagerFactoryBean javatunesEmf() {
-		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(javatunesDataSource());
-		em.setPersistenceUnitName(env.getProperty("javatunes.persistenceUnitName"));
-		em.setPackagesToScan("com.javatunes.*");
-		em.setJpaVendorAdapter(vendorAdapter());
-		em.setJpaProperties(additionalProperties());
-		return em;
-	}
-
-	private Properties additionalProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.dialect", env.getProperty("javatunes.dialect")); 
-		return properties;
-	}
-
-	@Bean
-	public SongRepository itemRepository() {
+	public SongRepository songRepository() {
 		return new JpaSongRepository();
 	}
 

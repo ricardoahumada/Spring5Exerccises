@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-//@Configuration
+@Configuration
 @EnableTransactionManagement 
 @ComponentScan(basePackages = "com.bananaapps.bananamusic")
 @Import({SpringRepositoryConfig.class, SpringServicesConfig.class})

@@ -1,7 +1,7 @@
 package com.bananaapps.bananamusic.config;
 
-import com.bananaapps.bananamusic.persistence.music.ItemRepository;
-import com.bananaapps.bananamusic.persistence.music.JpaItemRepository;
+import com.bananaapps.bananamusic.persistence.music.SongRepository;
+import com.bananaapps.bananamusic.persistence.music.JpaSongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
@@ -72,8 +72,8 @@ public class SpringRepositoryConfig {
 	}
 
 	@Bean
-	public ItemRepository itemRepository() {
-		return new JpaItemRepository();
+	public SongRepository itemRepository() {
+		return new JpaSongRepository();
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.bananaapps.bananamusic.service;
 
 
-import com.bananaapps.bananamusic.domain.music.MusicCategory;
-import com.bananaapps.bananamusic.domain.music.MusicItem;
+import com.bananaapps.bananamusic.domain.music.SongCategory;
+import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.service.music.Catalog;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class CatalogTest {
 	// One TX, everything works properly
 	@Test
 	public void testFind_WithRequiredTX_Positive() {
-		MusicItem item = cat.findById(1L);
+		Song item = cat.findById(1L);
 		assertNotNull(item);
 		System.out.println("Found item" + item);
 	}
@@ -53,7 +53,7 @@ public class CatalogTest {
 	public void testSaveBatch_withNullEntity_negative() {  
 		String expectedExceptionEndString = "event with null entity";
 		try {
-			cat.saveBatch(grabBatch());
+			cat.saveCollection(grabBatch());
 			fail("Exception not thrown");
 		}
 		catch (IllegalArgumentException iae) {
@@ -63,7 +63,7 @@ public class CatalogTest {
 	
 	@Test
 	public void testSave_WithRequiredTX_positive() {	
-		MusicItem saveItem = new MusicItem("SaveItemTitle", "SaveArtist", "2013-01-04",new BigDecimal("13.99"), MusicCategory.CLASSICAL);
+		Song saveItem = new Song("SaveItemTitle", "SaveArtist", "2013-01-04",new BigDecimal("13.99"), SongCategory.CLASSICAL);
 		assertNull(saveItem.getId());
 		cat.save(saveItem);
 		Long id = saveItem.getId();
@@ -72,16 +72,16 @@ public class CatalogTest {
 	}
 	
 
-	private Collection<MusicItem> grabBatch() {
-		Collection<MusicItem> batch = new ArrayList<MusicItem>();
-		add(batch, "New One", "New", "2013-01-04", "13.99", MusicCategory.RAP);
-		add(batch, "Another New One", "Newer", "2013-02-05", "14.99", MusicCategory.POP);
+	private Collection<Song> grabBatch() {
+		Collection<Song> batch = new ArrayList<Song>();
+		add(batch, "New One", "New", "2013-01-04", "13.99", SongCategory.RAP);
+		add(batch, "Another New One", "Newer", "2013-02-05", "14.99", SongCategory.POP);
 		batch.add(null);
 		return batch;
 	}
 
-	private void add(Collection<MusicItem> batch, String title, String artist, String releaseDate,String price, MusicCategory musicCategory) {
-		batch.add(new MusicItem(title, artist, releaseDate,new BigDecimal(price), musicCategory));
+	private void add(Collection<Song> batch, String title, String artist, String releaseDate, String price, SongCategory musicCategory) {
+		batch.add(new Song(title, artist, releaseDate,new BigDecimal(price), musicCategory));
 	}
 
 }

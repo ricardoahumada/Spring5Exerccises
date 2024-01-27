@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "INVENTORY")
-public class Inventory {
+public class Backlog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,22 +25,12 @@ public class Inventory {
 
     @ManyToOne
     @JoinColumn(name = "itemId")
-    private MusicItem item;
+    private Song item;
 
-    public MusicItem getItem() {
-        return item;
-    }
-
-    public void setItem(MusicItem mi) {
-        item = mi;
-    }
-
-
-    public Inventory(String location, int quantity) {
+    public Backlog(String location, int quantity) {
         // Set the location and quantity
         setLocation(location);
         setQuantity(quantity);
     }
-
 
 }

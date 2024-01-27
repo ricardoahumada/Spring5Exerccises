@@ -1,8 +1,8 @@
 package com.bananaapps.bananamusic.persistence;
 
-import com.bananaapps.bananamusic.domain.music.DownloadableMusicItem;
-import com.bananaapps.bananamusic.domain.music.MusicItem;
-import com.bananaapps.bananamusic.persistence.music.ItemRepository;
+import com.bananaapps.bananamusic.domain.music.OfflineSong;
+import com.bananaapps.bananamusic.domain.music.Song;
+import com.bananaapps.bananamusic.persistence.music.SongRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class ItemInheritanceTest {
+public class SongInheritanceTest {
 
-    // Inject a repository
 	@Autowired
-	ItemRepository repo;
+	SongRepository repo;
 
-	// Used to control transactions
     @Autowired
 	private PlatformTransactionManager transactionManager;		
 	
@@ -33,16 +31,13 @@ public class ItemInheritanceTest {
 		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
 		TransactionStatus transaction = transactionManager.getTransaction(definition);
 
-		// Get item with id == 1
-		MusicItem mi = repo.findOne(1L);
+		Song mi = repo.findOne(1L);
 		System.out.println(mi);
 		
-		// We know that this is true based on our database
-		assertTrue(mi instanceof DownloadableMusicItem);
+		assertTrue(mi instanceof OfflineSong);
 
-		// Get all items and output for illustration - no tests done.
-		Collection<MusicItem> allItems = repo.findAll();
-		allItems.forEach(i -> System.out.println(i));
+		Collection<Song> allSongs = repo.findAll();
+		allSongs.forEach(i -> System.out.println(i));
         transactionManager.commit(transaction);
 	}
 }

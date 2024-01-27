@@ -1,6 +1,6 @@
 package com.bananaapps.bananamusic.domain.music;
 
-public enum MusicCategory {
+public enum SongCategory {
 	ALTERNATIVE ("Alternative"), 
 	BLUES ("Blues"), 
 	CLASSICAL ("Classical"), 
@@ -13,7 +13,7 @@ public enum MusicCategory {
 
 	private String description;
 
-	private MusicCategory (String description) {
+	private SongCategory(String description) {
 		this.description = description;
 	}
 

@@ -17,13 +17,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @Table(name = "DownloadableItem")
 @PrimaryKeyJoinColumn(name = "itemId")
-public class DownloadableMusicItem extends MusicItem {
+public class OfflineSong extends Song {
 
     private String url;
     private String fileType;
 
-    public DownloadableMusicItem(String num, String title,
-                                 String artist, LocalDate releaseDate, BigDecimal price) {
+    public OfflineSong(String num, String title,
+                       String artist, LocalDate releaseDate, BigDecimal price) {
         setTitle(title);
         setArtist(artist);
         setReleaseDate(releaseDate);

@@ -1,4 +1,4 @@
-package com.bananaapps.bananamusic.persistence;
+package com.bananaapps.bananamusic.persistence.music;
 
 import com.bananaapps.bananamusic.domain.music.OfflineSong;
 import com.bananaapps.bananamusic.domain.music.Song;

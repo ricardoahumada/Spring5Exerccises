@@ -1,4 +1,4 @@
-package com.bananaapps.bananamusic.persistence;
+package com.bananaapps.bananamusic.persistence.music;
 
 import com.bananaapps.bananamusic.domain.music.Backlog;
 import com.bananaapps.bananamusic.domain.music.Song;
@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class songRelationshipWorkTest {
+public class SongRelationshipWorkTest {
 
 	@Autowired
     SongRepository repo;

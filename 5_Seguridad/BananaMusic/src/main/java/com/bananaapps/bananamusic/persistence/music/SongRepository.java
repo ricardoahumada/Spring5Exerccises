@@ -1,9 +1,9 @@
 package com.bananaapps.bananamusic.persistence.music;
 
-import java.util.Collection;
-
-import com.bananaapps.bananamusic.domain.music.SongCategory;
 import com.bananaapps.bananamusic.domain.music.Song;
+import com.bananaapps.bananamusic.domain.music.SongCategory;
+
+import java.util.Collection;
 
 public interface SongRepository {
 

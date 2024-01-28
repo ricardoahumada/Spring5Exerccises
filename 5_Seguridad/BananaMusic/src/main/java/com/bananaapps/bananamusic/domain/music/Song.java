@@ -68,16 +68,15 @@ public class Song {
         setId(id);
     }
 
-    public Song(String title, String artist, String releaseDate,
-                BigDecimal price, SongCategory musicCategory) {
+    public Song(String title, String artist, String releaseDate, BigDecimal price, SongCategory musicCategory) {
         this.setTitle(title);
         this.setArtist(artist);
         this.setReleaseDateAsString(releaseDate);
         this.setPrice(price);
         this.setSongCategory(musicCategory);
     }
-    public Song(Long id, String title, String artist, String releaseDate,
-                BigDecimal price, SongCategory musicCategory) {
+
+    public Song(Long id, String title, String artist, String releaseDate, BigDecimal price, SongCategory musicCategory) {
         this.setId(id);
         this.setTitle(title);
         this.setArtist(artist);

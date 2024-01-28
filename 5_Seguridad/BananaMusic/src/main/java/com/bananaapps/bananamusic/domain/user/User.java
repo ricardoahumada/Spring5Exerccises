@@ -36,6 +36,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private ERole role;
 
+    public User(Integer id) {
+        this.id = id;
+    }
+
     //JWT Security related fields
 
     @Override

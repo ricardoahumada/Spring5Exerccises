@@ -1,11 +1,16 @@
 package com.bananaapps.bananamusic.persistence.music;
 
 import com.bananaapps.bananamusic.domain.music.PurchaseOrder;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-@Repository
-@Transactional
-public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, Long> {
+import java.util.Collection;
+
+public interface PurchaseOrderRepository {
+
+    public PurchaseOrder getById(Long id);
+
+    public Collection<PurchaseOrder> findAll();
+
+    public PurchaseOrder save(PurchaseOrder order);
+
+    public void delete(PurchaseOrder order);
 }

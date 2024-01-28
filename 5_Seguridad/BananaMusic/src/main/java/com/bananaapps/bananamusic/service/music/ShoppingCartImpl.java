@@ -2,11 +2,11 @@ package com.bananaapps.bananamusic.service.music;
 
 import com.bananaapps.bananamusic.domain.music.PurchaseOrder;
 import com.bananaapps.bananamusic.domain.music.PurchaseOrderLineSong;
-import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.domain.user.User;
 import com.bananaapps.bananamusic.exception.SongNotfoundException;
 import com.bananaapps.bananamusic.exception.UserNotfoundException;
 import com.bananaapps.bananamusic.persistence.UserRepository;
+import com.bananaapps.bananamusic.persistence.music.JpaPurchaseOrderRepository;
 import com.bananaapps.bananamusic.persistence.music.PurchaseOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,7 @@
 package com.bananaapps.bananamusic.persistence.music;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.bananaapps.bananamusic.domain.music.SongCategory;
@@ -84,11 +79,20 @@ public class InMemorySongRepository implements SongRepository {
 
     @Override
     public Song save(Song song) {
-        return null;
+        song.setId(new Random().nextLong());
+        catalogData.add(song);
+        return song;
     }
 
     @Override
     public void delete(Song song) {
+        for (Song s : catalogData) {
+            if (s.getId() == song.getId()) {
+                catalogData.remove(s);
+                break;
+            }
+
+        }
     }
 
 }

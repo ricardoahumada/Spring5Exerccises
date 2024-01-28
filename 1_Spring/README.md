@@ -2,6 +2,7 @@
 
 ### 1.1 Para el proyecto Banana Music:
 	- Genera la configuración de spring basada en clases para Song (persistencia y servicio) que permita pasar los tests correspondientes.
+		- Añade las anotaciones pertinentes a los tests para que funcionen.
 	- Genera la configuración de spring basada en anotaciones para PurchaseOrder (persistencia y servicio) que permita pasar los tests correspondientes.
 ### 1.2 Dada la base de datos banana_music:
 	- Actualiza la configuración para que se conecte al datasource.

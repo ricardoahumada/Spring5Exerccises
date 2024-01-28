@@ -18,6 +18,7 @@ public class PurchaseOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int status;
+    private boolean valid;
     private LocalDate orderDate;
 
     @ManyToOne
@@ -26,4 +27,17 @@ public class PurchaseOrder {
 
     @OneToMany(mappedBy = "order")
     private List<PurchaseOrderLineSong> lineSongs;
+
+
+    public boolean isValid() {
+        return (orderDate.isBefore(LocalDate.now()) && user != null && user.getId() > 0L && lineSongs.size() > 0);
+    }
+
+    public double getTotalPrice() {
+        if (lineSongs != null) {
+            lineSongs.stream().reduce((acc, line) -> {
+                return acc + line.getQuantity() * line.getUnitPrice();
+            });
+        } else return 0;
+    }
 }

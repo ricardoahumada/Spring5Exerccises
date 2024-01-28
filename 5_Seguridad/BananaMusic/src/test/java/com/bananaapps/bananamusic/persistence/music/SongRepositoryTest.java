@@ -58,13 +58,12 @@ class SongRepositoryTest {
     }
 
     @Test
-    void save() {
-//    public Song(String title, String artist, String releaseDate, BigDecimal price, SongCategory musicCategory) {
-
+    void given_validSong_When_save_Then_Ok() {
         Song newSong = new Song("Mamma mia", "ABBA", "1999-04-30", new BigDecimal(18.0), SongCategory.POP);
 
         Song savedSong = repo.save(newSong);
         assertThat(savedSong, notNullValue());
         assertThat(savedSong.getId(), greaterThan(0L));
     }
+    
 }

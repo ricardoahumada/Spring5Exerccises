@@ -1,7 +1,14 @@
 # 1. Spring
 
-### 1.1 Para el proyecto Banana Music, genera la configuración de spring basada en clases que permita pasar los tests.
-### 1.2 Genera la configuración de spring basada en anotaciones que permita pasar los tests.
-### 1.3 Dada la base de datos banana_music, genera la configuración de capa de persistencia basada en repositorios spring jpa. 
-### 1.4 Genera la configuración de capa de persistencia basada en repositorios spring data JpaRepository. 
-### 1.5 Añade perfiles de dev y prod para que dev use los repositorios en memoria y prod el datasource de base de datos.
+### 1.1 Para el proyecto Banana Music:
+	- Genera la configuración de spring basada en clases para Song (persistencia y servicio) que permita pasar los tests correspondientes.
+	- Genera la configuración de spring basada en anotaciones para PurchaseOrder (persistencia y servicio) que permita pasar los tests correspondientes.
+### 1.2 Dada la base de datos banana_music:
+	- Actualiza la configuración para que se conecte al datasource.
+	- Anota las entidades báse (Song y PurchaseOrder).
+	- Genera la configuración de capa de persistencia basada en repositorios spring jpa para Song.
+	- Genera la configuración de capa de persistencia basada en repositorios spring data JpaRepository para PurchaseOrder.
+	- Anota las entidades relacionadas (resto y herencia de Song).
+### 1.3 Añade perfiles de "dev" y "prod".
+	- "dev" debe usas los repositorios en memoria
+	- "prod" el datasource de base de datos.

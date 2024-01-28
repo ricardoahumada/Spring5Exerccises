@@ -1,6 +1,5 @@
 package com.bananaapps.bananamusic.controller;
 
-import com.bananaapps.bananamusic.domain.Product;
 import com.bananaapps.bananamusic.domain.StatusMessage;
 import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.exception.SongNotfoundException;
@@ -28,7 +27,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -38,8 +36,6 @@ import java.util.Map;
 public class SongServiceController {
     private static final Logger logger = LoggerFactory.getLogger(SongServiceController.class);
 
-    @Autowired
-    SongRepository songRepo;
 
     @Autowired
     Catalog catalog;

@@ -41,9 +41,8 @@ class ShoppingCartTest {
         Random rand = new Random();
 
         for (int i = 0; i < numProducts; i++) {
-            cart.addItem(new PurchaseOrderLineSong(1L, null, null, 2, rand.nextDouble() * 100));
+            cart.addItem(new PurchaseOrderLineSong(1L, null, 2, rand.nextDouble() * 100));
         }
-
 
         cart.empty();
 
@@ -70,7 +69,7 @@ class ShoppingCartTest {
         // when
         for (int i = 0; i < numProducts; i++) {
             double precio = rand.nextDouble() * 100;
-            cart.addItem(new PurchaseOrderLineSong(1L, null, null, 1, precio));
+            cart.addItem(new PurchaseOrderLineSong(1L, null, 1, precio));
 
             inc += precio;
         }
@@ -101,7 +100,7 @@ class ShoppingCartTest {
         Random rand = new Random();
 
         for (int i = 0; i < 3; i++) {
-            cart.addItem(new PurchaseOrderLineSong(1L, null, null, 2, rand.nextDouble() * 100));
+            cart.addItem(new PurchaseOrderLineSong(1L, null, 2, rand.nextDouble() * 100));
         }
 
         cart.buy();

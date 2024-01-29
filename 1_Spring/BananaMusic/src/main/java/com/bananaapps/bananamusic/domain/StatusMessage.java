@@ -1,6 +1,5 @@
 package com.bananaapps.bananamusic.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class StatusMessage {
 
@@ -15,7 +14,6 @@ public class StatusMessage {
         this.message = message;
     }
 
-    @JsonProperty(value = "status_code")
     public Integer getStatus() {
         return status;
     }
@@ -24,7 +22,6 @@ public class StatusMessage {
         this.status = status;
     }
 
-    @JsonProperty(value = "message")
     public String getMessage() {
         return message;
     }

@@ -39,14 +39,15 @@ class PurchaseOrderRepositoryTest {
     void given_existingOrder_WHEN_save_Then_OK() {
 
         List<PurchaseOrderLineSong> lines = List.of(
-                new PurchaseOrderLineSong(null, null, new Song(1l), 1, 10.0)
+                new PurchaseOrderLineSong(null, new Song(1l), 1, 10.0)
         );
 
         PurchaseOrder order = new PurchaseOrder(null, 1, true, LocalDate.now(), new User(1), lines);
 
-        for (PurchaseOrderLineSong line : lines) {
+        // TODO: uncomment when relations set
+        /*for (PurchaseOrderLineSong line : lines) {
             line.setOrder(order);
-        }
+        }*/
 
         order = repo.save(order);
 

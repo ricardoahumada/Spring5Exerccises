@@ -75,7 +75,7 @@ public class SongServiceController {
             return new ResponseEntity<>(new StatusMessage(HttpStatus.NOT_FOUND.value(), "Not found"), HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/keyword/{keyword}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Song>> getSongsByKeywords(@PathVariable @NotNull @NotBlank @ApiParam(name = "keyword", value = "Song text in title", example = "mamma") String keyword) {
         Collection<Song> songs = catalog.findByKeyword(keyword);
         return new ResponseEntity<>(songs, HttpStatus.OK);

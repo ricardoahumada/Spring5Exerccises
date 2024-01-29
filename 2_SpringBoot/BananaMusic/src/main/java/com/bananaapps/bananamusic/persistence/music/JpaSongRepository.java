@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,19 +33,26 @@ public class JpaSongRepository implements SongRepository {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Collection<Song> findByKeyword(String keyword) {
-        return null;
+        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s WHERE s.title LIKE CONCAT('%',:keyword,'%') OR s.artist LIKE CONCAT('%',:keyword,'%')", Song.class);
+        q.setParameter("keyword", keyword);
+        return q.getResultList();
     }
 
     @Override
     @Transactional(propagation = Propagation.NEVER)
     public long count() {
-        return 0;
+        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s WHERE s.title LIKE %:keyword% OR s.artist LIKE %:keyword% ", Song.class);
+        Query query = em.createQuery("SELECT count(*) FROM Song");
+        return (long) query.getSingleResult();
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Collection<Song> findByArtistContainingOrTitleContainingAllIgnoreCase(String artist, String title) {
-        return null;
+        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s WHERE s.title LIKE CONCAT('%',:title,'%') OR s.artist LIKE CONCAT('%',:artist,'%')", Song.class);
+        q.setParameter("artist", artist);
+        q.setParameter("title", title);
+        return q.getResultList();
     }
 
     @Override

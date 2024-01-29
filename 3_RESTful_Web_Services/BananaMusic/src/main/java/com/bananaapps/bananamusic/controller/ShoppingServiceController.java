@@ -55,7 +55,7 @@ public class ShoppingServiceController {
             @ApiResponse(code = 202, message = "Successfully added"),
             @ApiResponse(code = 400, message = "Bad request"),
     })
-    @PutMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity addItem(@RequestBody @Valid PurchaseOrderLineSong item) {
         cart.addItem(item);
         return new ResponseEntity<>(new StatusMessage(HttpStatus.ACCEPTED.value(), "Added"), HttpStatus.ACCEPTED);

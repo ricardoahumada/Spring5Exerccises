@@ -54,7 +54,7 @@ class SongRepositoryTest {
         Song newSong = new Song("Mamma mia", "ABBA", "1999-04-30", new BigDecimal(18.0), SongCategory.POP);
 
         Song savedSong = repo.save(newSong);
-        assertThat(savedSong, notNullValue());
+        assertThat(savedSong, empty());
         assertThat(savedSong.getId(), greaterThan(0L));
     }
     

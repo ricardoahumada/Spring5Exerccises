@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SpringServicesConfig {
-	
 	@Autowired
     SongRepository repository;
 	

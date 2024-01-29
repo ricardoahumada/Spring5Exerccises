@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //@EnableTransactionManagement
 @ComponentScan(basePackages = "com.bananaapps.bananamusic")
 @Import({SpringRepositoryConfig.class, SpringServicesConfig.class})
-@PropertySource("classpath:application.properties")
 @EnableJpaRepositories("com.bananaapps.bananamusic.persistence")
 @EntityScan("com.bananaapps.bananamusic.domain")
 public class SpringConfig {

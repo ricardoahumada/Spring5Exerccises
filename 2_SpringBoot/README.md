@@ -2,7 +2,7 @@
 
 
 ### 2.0. Previo:
-	- Elimina los repositorios InMemory y los perfiles
+	- Elimina los repositorios InMemory y los perfiles de la configuración.
 ### 2.1. Actualiza el proyecto para:
 	- incorporar las dependencias de SpringBoot necesarias para que sea un proyecto web.
 	- incorporar el archivo de propiedades yaml para conectarse a la base de datos mysql.

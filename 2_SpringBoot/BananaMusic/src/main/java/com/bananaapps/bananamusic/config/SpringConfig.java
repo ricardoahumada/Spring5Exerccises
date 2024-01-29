@@ -8,10 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@ComponentScan(basePackages = "com.bananaapps.bananamusic")
 @Import({SpringRepositoryConfig.class, SpringServicesConfig.class})
-@EnableJpaRepositories("com.bananaapps.bananamusic.persistence")
-@EntityScan("com.bananaapps.bananamusic.domain")
 public class SpringConfig {
 
 }

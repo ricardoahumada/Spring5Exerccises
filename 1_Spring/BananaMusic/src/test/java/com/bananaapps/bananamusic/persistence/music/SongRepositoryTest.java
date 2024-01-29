@@ -56,7 +56,7 @@ class SongRepositoryTest {
     void given_invalidKeyword_When_findByKeyword_Then_null() {
         String keyword = "axx";
         Collection<Song> songs = repo.findByKeyword(keyword);
-        assertThat(songs, nullValue());
+        assertThat(songs, empty());
         assertThat(songs.size(), equalTo(0));
     }
 

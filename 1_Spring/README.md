@@ -1,7 +1,7 @@
 # 1. Spring
 
 ### 1.1 Para el proyecto Banana Music:
-	- Activa las dependencias para usar spring jpa
+	- Activa las dependencias para usar spring jpa y poder conectarte a la bbdd mysql
 	- Genera la configuración de spring basada en clases para Song (persistencia y servicio) que permita pasar los tests correspondientes.
 		- Añade las anotaciones pertinentes a los tests para que funcionen.
 	- Genera la configuración de spring basada en anotaciones para PurchaseOrder (persistencia y servicio) que permita pasar los tests correspondientes.

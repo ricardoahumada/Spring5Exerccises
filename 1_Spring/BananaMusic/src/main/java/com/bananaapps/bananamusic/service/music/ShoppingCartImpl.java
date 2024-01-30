@@ -6,13 +6,16 @@ import com.bananaapps.bananamusic.domain.user.User;
 import com.bananaapps.bananamusic.exception.SongNotfoundException;
 import com.bananaapps.bananamusic.exception.UserNotfoundException;
 import com.bananaapps.bananamusic.persistence.UserRepository;
+import com.bananaapps.bananamusic.persistence.music.JpaPurchaseOrderRepository;
 import com.bananaapps.bananamusic.persistence.music.PurchaseOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+@Service
 public class ShoppingCartImpl implements ShoppingCart {
 
     private ArrayList<PurchaseOrderLineSong> items;
@@ -68,11 +71,21 @@ public class ShoppingCartImpl implements ShoppingCart {
     public void buy() {
 
         try {
-            User currentUser = userRepo.findByEmailAndPassword("juana@e.com", "juanason_1").orElseThrow(() -> {
+            // simulated user. Must exist in ddbb
+            User currentUser = userRepo.findByEmailAndPassword("juan@j.com", "jjjj").orElseThrow(() -> {
                 throw new UserNotfoundException();
             });
-            PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.now(), currentUser, items);
-            if (purchase.isValid()) orderRepo.save(purchase);
+
+            PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.of(2024, 1, 28), currentUser, items);
+
+            for (PurchaseOrderLineSong item : items) {
+                item.setOrder(purchase);
+            }
+
+            if(purchase.isValid()) {
+                orderRepo.save(purchase);
+                empty();
+            }
             else throw new RuntimeException("No valid");
         } catch (Exception e) {
             e.printStackTrace();

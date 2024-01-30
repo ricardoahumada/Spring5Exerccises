@@ -93,7 +93,7 @@ public class SongServiceController {
     public ResponseEntity saveSongs(@RequestBody @Valid Collection<Song> songs) {
         catalog.saveCollection(songs);
 
-        return new ResponseEntity<>(new StatusMessage(HttpStatus.OK.value(), "Songs saved"), HttpStatus.OK);
+        return new ResponseEntity<>(new StatusMessage(HttpStatus.CREATED.value(), "Songs saved"), HttpStatus.CREATED);
     }
 
 

@@ -65,6 +65,7 @@ public class Song {
     }
 
     @Transient
+    @JsonIgnore
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public Song(Long id) {

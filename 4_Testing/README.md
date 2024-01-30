@@ -8,7 +8,7 @@
 	- PUT /cart
 	- GET /cart/balance
 	- POST /cart/buy
-### 4.4. Define tests de integración MVC, usando @WebMvcTest y mockeando el servicio correspondiente. Para los verbos y endpoints:
+### 4.4. Define tests de integración MVC, usando @WebMvcTest y mockeando el repositorio para catalog y el servicio para cart. Para los verbos y endpoints:
 	- GET /catalog/keyword/{keyword}
 	- POST /catalog
 	- PUT /cart

@@ -2,52 +2,44 @@ package com.bananaapps.bananamusic.controller;
 
 import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.domain.music.SongCategory;
-import com.bananaapps.bananamusic.persistence.music.SongRepository;
-import com.bananaapps.bananamusic.util.JsonUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.*;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
+import java.net.URI;
 
-import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@AutoConfigureMockMvc
-//@Sql(value = "classpath:testing.sql")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@Sql("classpath:testing.sql")
 //@Sql(value = "classpath:testing_clean.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ActiveProfiles({"dev"})
 class SongServiceControllerTest_RestTemplate {
 
+    @LocalServerPort
+    private int port;
     @Autowired
-    private MockMvc mvc;
-
-    @Autowired
-    private SongServiceController controller;
-
-    @Autowired
-    private SongRepository repository;
+    private TestRestTemplate restTemplate;
 
 
     @Test
     void getSongsByKeywords() throws Exception {
         String keyword = "a";
 
-        mvc.perform(get("/catalog/keyword/" + keyword).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[*].title", hasItem("Diva")));
+        ResponseEntity<String> response = restTemplate
+                .getForEntity("http://localhost:" + port + "/catalog/keyword/" + keyword,
+                        String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).contains("Diva");
+        assertThat(response.getHeaders().getContentType()).isEqualTo(MediaType.APPLICATION_JSON);
     }
 
 
@@ -55,14 +47,20 @@ class SongServiceControllerTest_RestTemplate {
     void createSong() throws Exception {
         Song newSong = new Song("Sonata", "Beethoven", "2023-01-04", new BigDecimal("13.99"), SongCategory.CLASSICAL);
 
-        mvc.perform(post("/catalog")
-                        .content(JsonUtil.asJsonString(newSong))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-                )
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.id", is(greaterThanOrEqualTo(1))));
+        final String baseUrl = "http://localhost:" + port + "/catalog";
+        URI uri = new URI(baseUrl);
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("ACCEPT", "application/json");
+
+        HttpEntity<Song> request = new HttpEntity<>(newSong, headers);
+
+        ResponseEntity<Song> response = this.restTemplate.postForEntity(uri, request, Song.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+        Song rSong = response.getBody();
+        assertThat(rSong.getId()).isGreaterThan(0);
+
+        System.out.println("\n\nresponse: " + response + "\n\n");
     }
 }

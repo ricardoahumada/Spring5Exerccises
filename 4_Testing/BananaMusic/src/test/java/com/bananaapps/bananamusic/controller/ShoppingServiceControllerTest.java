@@ -17,8 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 //@Sql(value = "classpath:testing.sql")
 //@Sql(value = "classpath:testing_clean.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ActiveProfiles({"dev"})
 class ShoppingServiceControllerTest {

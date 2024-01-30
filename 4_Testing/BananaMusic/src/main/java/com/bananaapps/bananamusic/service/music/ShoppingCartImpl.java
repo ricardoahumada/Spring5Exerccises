@@ -72,11 +72,20 @@ public class ShoppingCartImpl implements ShoppingCart {
 
         try {
             // simulated user. Must exist in ddbb
-            User currentUser = userRepo.findByEmailAndPassword("juana@e.com", "juanason_1").orElseThrow(() -> {
+            User currentUser = userRepo.findByEmailAndPassword("juan@j.com", "jjjj").orElseThrow(() -> {
                 throw new UserNotfoundException();
             });
-            PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.now(), currentUser, items);
-            if(purchase.isValid()) orderRepo.save(purchase);
+
+            PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.of(2024, 1, 28), currentUser, items);
+
+            for (PurchaseOrderLineSong item : items) {
+                item.setOrder(purchase);
+            }
+
+            if(purchase.isValid()) {
+                orderRepo.save(purchase);
+                empty();
+            }
             else throw new RuntimeException("No valid");
         } catch (Exception e) {
             e.printStackTrace();

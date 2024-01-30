@@ -1,27 +1,30 @@
 package com.bananaapps.bananamusic.persistence.music;
 
-import com.bananaapps.bananamusic.config.SpringConfig;
 import com.bananaapps.bananamusic.domain.music.Song;
 import com.bananaapps.bananamusic.domain.music.SongCategory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@DataJpaTest()
+@Import(com.bananaapps.bananamusic.config.SpringRepositoryConfig.class) // dev beans
+@ComponentScan(basePackages = {"com.bananaapps.bananamusic.persistence.music"}) // prod beans
+@AutoConfigureTestEntityManager
 @ActiveProfiles({"dev"}) // for activate profile dev
 //@ActiveProfiles({"prod"}) // for activate profile prod
 class SongRepositoryTest {

@@ -41,7 +41,6 @@ public class JpaSongRepository implements SongRepository {
     @Override
     @Transactional(propagation = Propagation.NEVER)
     public long count() {
-        TypedQuery<Song> q = em.createQuery("SELECT s FROM Song s WHERE s.title LIKE %:keyword% OR s.artist LIKE %:keyword% ", Song.class);
         Query query = em.createQuery("SELECT count(*) FROM Song");
         return (long) query.getSingleResult();
     }

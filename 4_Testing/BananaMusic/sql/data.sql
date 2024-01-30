@@ -31,10 +31,3 @@ INSERT INTO `inventory` (`id`, `tune_id`, `location`, `quantity`, `version`) VAL
 INSERT INTO `inventory` (`id`, `tune_id`, `location`, `quantity`, `version`) VALUES (NULL, 7, 'New York', 10, 1);
 INSERT INTO `inventory` (`id`, `tune_id`, `location`, `quantity`, `version`) VALUES (NULL, 8, 'New York', 10, 1);
 INSERT INTO `inventory` (`id`, `tune_id`, `location`, `quantity`, `version`) VALUES (NULL, 9, 'Edwardsville', 10, 1);
-
-INSERT INTO `purchase_order` (`id`, `order_date`, `status`, `user_id`, `valid`) VALUES
-(1, '2024-01-28', 1, 1, '1');
-
-
-INSERT INTO `purchase_order_line_song` (`line_number`, `quantity`, `unit_price`, `order_id`, `song_id`) VALUES
-(1, 1, 10, 1, 1);

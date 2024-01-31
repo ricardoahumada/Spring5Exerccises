@@ -45,9 +45,10 @@ public class AuthorizationServerConfig {
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .redirectUri("http://127.0.0.1:8080/login/oauth2/code/music-client-oidc")
                 .redirectUri("http://127.0.0.1:8080/authorized")
-                .tokenSettings(tokenSettings())
+//                .redirectUri("https://oauthdebugger.com/debug")
                 .scope(OidcScopes.OPENID)
                 .scope("SCOPE_music.read")
+                .tokenSettings(tokenSettings())
                 .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);

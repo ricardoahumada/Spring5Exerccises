@@ -20,7 +20,7 @@ public class CartController {
     ) {
         return this.webClient
                 .get()
-                .uri("http://127.0.0.1:9090/cart/balance")
+                .uri("http://localhost:9090/cart/balance")
                 .attributes(oauth2AuthorizedClient(authorizedClient))
                 .retrieve()
                 .bodyToMono(Double.class)

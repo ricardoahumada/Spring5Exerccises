@@ -41,11 +41,11 @@ class SongRepositoryTest {
         assertThat(songs.size(), greaterThan(0));
     }
 
-    @Test
-    void given_invalidKeyword_When_findByKeyword_Then_null() {
+     @Test
+    void given_invalidKeyword_When_findByKeyword_Then_Empty() {
         String keyword = "axx";
         Collection<Song> songs = repo.findByKeyword(keyword);
-        assertThat(songs, nullValue());
+        assertThat(songs, empty());
         assertThat(songs.size(), equalTo(0));
     }
 

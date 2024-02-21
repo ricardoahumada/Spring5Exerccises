@@ -37,7 +37,7 @@ spring:
 server:
   port: 9090
 
-debug: true
+debug: false
 logging:
   path: /var/tmp/
   file: /var/tmp/mylog.log

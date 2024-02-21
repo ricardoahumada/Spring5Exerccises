@@ -23,8 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringConfig.class})
 @EnableAutoConfiguration
-@ActiveProfiles({"dev"}) // for activate profile dev
-//@ActiveProfiles({"prod"}) // for activate profile prod
+//@ActiveProfiles({"dev"}) // for activate profile dev
+@ActiveProfiles({"prod"}) // for activate profile prod
 class SongRepositoryTest {
     @Autowired
     SongRepository repo;
@@ -53,7 +53,7 @@ class SongRepositoryTest {
     }
 
     @Test
-    void given_invalidKeyword_When_findByKeyword_Then_null() {
+    void given_invalidKeyword_When_findByKeyword_Then_Empty() {
         String keyword = "axx";
         Collection<Song> songs = repo.findByKeyword(keyword);
         assertThat(songs, empty());

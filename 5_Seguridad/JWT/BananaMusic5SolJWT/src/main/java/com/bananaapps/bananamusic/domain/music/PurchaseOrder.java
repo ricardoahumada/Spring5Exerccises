@@ -1,9 +1,13 @@
 package com.bananaapps.bananamusic.domain.music;
 
 import com.bananaapps.bananamusic.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,16 +20,24 @@ import java.util.List;
 public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     private Long id;
+
+    @Min(0)
+    @Max(1)
     private int status;
+
+    @NotNull
     private boolean valid;
     private LocalDate orderDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<PurchaseOrderLineSong> lineSongs;
 
 

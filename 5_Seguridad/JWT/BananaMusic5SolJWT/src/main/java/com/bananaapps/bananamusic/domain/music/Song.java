@@ -25,6 +25,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Getter
@@ -43,14 +46,25 @@ import javax.persistence.Version;
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(1)
     private Long id;
+
+    @NotBlank
     private String title, artist;
+
+    @NotNull
     private LocalDate releaseDate;
     @Column(name = "cost")
+
+    @Min(0)
     private BigDecimal price;
+
     @Enumerated(EnumType.STRING)
+    @NotNull
     private SongCategory songCategory;
+
     @Version
+    @JsonIgnore
     private int version;
 
     @JsonIgnore

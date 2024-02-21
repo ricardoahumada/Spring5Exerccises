@@ -54,7 +54,7 @@ public class ShoppingCartImpl implements ShoppingCart {
                 break;
             }
         }
-        throw new SongNotfoundException();
+        throw new SongNotfoundException("Song not found");
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ShoppingCartImpl implements ShoppingCart {
         try {
             // simulated user. Must exist in ddbb
             User currentUser = userRepo.findByEmailAndPassword("juan@j.com", "jjjj").orElseThrow(() -> {
-                throw new UserNotfoundException();
+                throw new UserNotfoundException("User not found");
             });
 
             PurchaseOrder purchase = new PurchaseOrder(null, 1, LocalDate.of(2024, 1, 28), currentUser, items);

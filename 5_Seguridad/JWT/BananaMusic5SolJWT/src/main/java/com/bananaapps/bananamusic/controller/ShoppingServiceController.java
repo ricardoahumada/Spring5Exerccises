@@ -67,7 +67,7 @@ public class ShoppingServiceController {
             @ApiResponse(code = 404, message = "Item does not exist"),
     })
     @DeleteMapping(value = "/{item}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity removeItem(@PathVariable @ApiParam(name = "item id", value = "Order line number", example = "234") Long item) {
+    public ResponseEntity removeItem(@PathVariable @ApiParam(name = "item id", value = "Order line number", example = "234") @Min(1) Long item) {
         cart.removeItem(item);
         return new ResponseEntity<>(new StatusMessage(HttpStatus.ACCEPTED.value(), "Removed"), HttpStatus.ACCEPTED);
     }

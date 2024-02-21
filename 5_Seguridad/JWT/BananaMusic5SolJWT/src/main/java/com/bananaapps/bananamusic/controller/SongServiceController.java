@@ -69,7 +69,7 @@ public class SongServiceController {
             @PathVariable @Min(1) @ApiParam(name = "id", value = "Song id", example = "1") Long id
     ) {
         Song song = catalog.findById(id);
-        if (song == null) throw new SongNotfoundException();
+        if (song == null) throw new SongNotfoundException("Song not found");
         if (song != null) return new ResponseEntity<>(song, HttpStatus.OK);
         else
             return new ResponseEntity<>(new StatusMessage(HttpStatus.NOT_FOUND.value(), "Not found"), HttpStatus.NOT_FOUND);
@@ -93,7 +93,7 @@ public class SongServiceController {
     public ResponseEntity saveSongs(@RequestBody @Valid Collection<Song> songs) {
         catalog.saveCollection(songs);
 
-        return new ResponseEntity<>(new StatusMessage(HttpStatus.CREATED.value(), "Songs saved"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new StatusMessage(HttpStatus.OK.value(), "Songs saved"), HttpStatus.OK);
     }
 
 

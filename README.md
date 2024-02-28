@@ -1,10 +1,22 @@
-# Ejercicios para Spring 5 - SpringBoot 2
+# Ejercicio: Proyectos - Tareas
 
-Para cada ejercicio nombra el proyecto con el número de ejercicio. <br>
-Por ejemplo, para el ejercicio 1.1 -> BananaMusic_v1.1
+Se quiere construir una API libre que permita un usuario anónimo gestionar proyectos y sus tareas asociadas.
 
-## 1. [Spring](./1_Spring)
-## 2. [SpringBoot](./2_SpringBoot)
-## 3. [RESTful Web Services](./3_RESTful_Web_Services)
-## 4. [Testing](./4_Testing)
-## 5. [Seguridad](./5_Seguridad)
+## Historias de usuario:
+1. Como usuario anónimo quiero poder crear proyectos para poder gestionar una lista asociada de tareas.
+2. Como usuario anónimo quiero poder añadir tareas a uno de mis proyectos para tener una lista ordenada de trabajos.
+3. Como usuario anónimo quiero poder mostrar la lista de mis proyectos para decidir cuál gestionar.
+4. Como usuario anónimo quiero ver la lista de tareas de un proyecto para ejecutarlas en ese orden.
+5. Como usuario quiero poder marcar una tarea como completada para olvidarme de ella.
+
+## Entidades:
+- Proyecto: [id], nombre, fechaDeCreacion, tareas.
+- Tarea: [id], descripción, fechaLimite, orden, completada.
+
+## Reto:
+- Diseña e implementa la API usando Spring Boot.
+	- Usa un perfil de desarrollo con H2 (dev)
+	- En la capa de persistencia se pude implementar el repositorio JPA o usar un JPARepository equivalente.
+	- En la capa de vista (controlle[s]) no olvides la gestión de excepciones, la validación y documentación.
+- Asegura la calidad de la aplicación con test automatizados para todas las capas: persistencia, servicio, web.
+- Añade un perfil de producción (prod) que use MySql.

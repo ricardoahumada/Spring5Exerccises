@@ -14,11 +14,11 @@ Se quiere construir una API libre que permita a un usuario anónimo gestionar pr
 - Tarea: [id], descripción, fechaLimite, orden, completada.
 
 ## Reto:
-- Crea un repositorio en GitHub.
 - Diseña e implementa la API usando Spring Boot.
 	- Usa un perfil de desarrollo con H2 (dev)
-	- En la capa de persistencia se pude implementar el repositorio JPA o usar un JPARepository equivalente.
+	- En la capa de persistencia puedes implementar el repositorio JPA o usar un JPARepository (Spring Data) equivalente.
 	- En la capa de vista (controlles) no olvides la gestión de excepciones, la validación y documentación.
-	- Añade cada tarea a una rama "feature/[funcionalidad]".
+- Sube tu solución un repositorio en GitHub.
+	- Añade cada implementación de historia a una rama "feature/[funcionalidad]".
 - Asegura la calidad de la aplicación con test automatizados para todas las capas: persistencia, servicio, web.
-- Añade un perfil de producción (prod) que use MySql.
+- Extra: Añade un perfil de producción (prod) que use MySql.

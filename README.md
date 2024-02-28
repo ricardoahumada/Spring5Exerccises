@@ -15,10 +15,12 @@ Se quiere construir una API libre que permita a un usuario anónimo gestionar pr
 
 ## Reto:
 - Diseña e implementa la API usando Spring Boot.
-	- Usa un perfil de desarrollo con H2 (dev)
+	- Crea el proyecto con Spring Initializr.
+	- Usa un perfil de desarrollo (dev) con H2, en el puerto 9900.
 	- En la capa de persistencia puedes implementar el repositorio JPA o usar un JPARepository (Spring Data) equivalente.
 	- En la capa de vista (controlles) no olvides la gestión de excepciones, la validación y documentación.
 - Sube tu solución un repositorio en GitHub.
 	- Añade cada implementación de historia a una rama "feature/[funcionalidad]".
 - Asegura la calidad de la aplicación con test automatizados para todas las capas: persistencia, servicio, web.
-- Extra: Añade un perfil de producción (prod) que use MySql.
+	- Puedes usar un perfil de testing (test)
+- Extra: Añade un perfil de producción (prod) que use MySql y comunique en protocolo seguro, en el puerto 9443.
